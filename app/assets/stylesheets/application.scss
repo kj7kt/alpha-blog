@@ -1,1 +1,32 @@
 @import "bootstrap";
+
+#page-content {
+  background: lightgray;
+}
+
+.navbar {
+
+  background-color: black !important;
+
+}
+
+.nav-link {
+  color: white !important;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.jumbotron {
+  background-image: asset_url('jumbotron.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 425px;
+}
