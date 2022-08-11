@@ -1,10 +1,32 @@
-<h1>Showing Articles Details</h1>
-<p><strong>Title: </strong><%= @article.title %></p>
-<p><strong>Description: </strong><%= @article.description %></p>
+<h1 class="text-center mt-4"><%= @article.title %></h1>
 
-<p>
-  <%= link_to 'Go back', articles_path %> |
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-  <%= link_to 'Delete', article_path(@article), data: { turbo_method: :delete,
-                                                        turbo_confirm: 'Are you sure?'}  %>
-</p>
+<div class="row justify-content-md-center">
+  <div class="col-8 mt-4">
+    <div class="container">
+      <div class="card text-center shadow-sm mb-5 bg-light rounded">
+        <div class="card-header fst-italic">
+          by kj7kt
+        </div>
+        <div class="card-body">
+          <div class="card-text text-start px-4">
+            <p><%= simple_format(@article.description) %></p>
+          </div>
+          <%= link_to 'Edit',
+                      edit_article_path(@article),
+                      class: "btn btn-outline-info" %>
+          <%= link_to 'Delete',
+                      article_path(@article),
+                      data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+                      class: "btn btn-outline-danger" %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>
+            <%= "created at #{time_ago_in_words(@article.created_at)} ago." %>
+            <%= @article.created_at == @article.updated_at ? "" : "edited at #{time_ago_in_words(@article.updated_at)} ago." %>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to '[ Go back ]', articles_path, class: 'text-center text-info' %>
+</div>

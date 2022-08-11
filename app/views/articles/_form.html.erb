@@ -1,5 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-10">
+    <%= render "articles/shared/errors" %>
     <%= form_with(model: @article, class: 'shadow bg-info rounded my-3 px-3 py-5', local: true) do |f| %>
 
       <div class="container">
@@ -25,5 +26,7 @@
       </div>
     <% end %>
   </div>
-    <%= link_to '[ Go back ]', articles_path, class: 'text-center text-info' %>
+  <div class="text-center">
+    <%= link_to '[ Go back ]', articles_path, class: 'text-info'%>
+  </div>
 </div>
