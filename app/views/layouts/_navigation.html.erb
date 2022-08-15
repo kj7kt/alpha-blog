@@ -1,36 +1,65 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-      <%= link_to "ALPHA BLOG", root_path, class: "navbar-brand", id: "logo" %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+    <%= link_to "ALPHA BLOG", root_path, class: "navbar-brand", id: "logo" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical text-white" viewBox="0 0 16 16">
             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
           </svg>
         </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Bloggers', users_path, class: 'nav-link' %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Articles
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'Create new article', new_article_path, class: 'dropdown-item' %>
+            <%= link_to 'View articles', articles_path, class: 'dropdown-item' %>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+          </ul>
+        </li>
+
+        <% if logged_in? %>
           <li class="nav-item">
-            <%= link_to 'Bloggers', users_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Articles
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Create new article', new_article_path, class: 'dropdown-item' %>
-              <%= link_to 'View articles', articles_path, class: 'dropdown-item' %>
-              <li><hr class="dropdown-divider"></li>
-            </ul>
+            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href=<%= about_path %>>About </a>
+            <%= link_to 'Log out',
+                        logout_path,
+                        data: { turbo_method: :delete,
+                                turbo_confirm: "Are you sure?" },
+                        class: "nav-link" %>
           </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log in',
+                        login_path,
+                        data: { turbo_method: :create },
+                        class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign up', signup_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: "nav-link" %>
+        </li>
+
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
