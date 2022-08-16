@@ -8,7 +8,7 @@
           <div class="card text-center shadow-sm mb-5 bg-light rounded">
             <div class="card-header fst-italic">
               <% if article.user %>
-                by <%= link_to article.user.username, user_path(article.user ) %>
+                by <%= link_to article.user.username, user_path(article.user) %>
               <% end %>
             </div>
             <div class="card-body">
@@ -18,13 +18,15 @@
                           article_path(article),
                           data: { turbo_method: :get },
                           class: "btn btn-outline-success" %>
-              <%= link_to 'Edit',
-                          edit_article_path(article),
-                          class: "btn btn-outline-info" %>
-              <%= link_to 'Delete',
-                          article_path(article),
-                          data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
-                          class: "btn btn-outline-danger" %>
+              <% if logged_in? && article.user == current_user %>
+                <%= link_to 'Edit',
+                            edit_article_path(article),
+                            class: "btn btn-outline-info" %>
+                <%= link_to 'Delete',
+                            article_path(article),
+                            data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+                            class: "btn btn-outline-danger" %>
+              <% end %>
             </div>
             <div class="card-footer text-muted">
               <small>
@@ -37,8 +39,4 @@
       </div>
     </div>
   <% end %>
-</div>
-
-<div class="apple_pagination fixed-bottom mt-auto">
-  <%= will_paginate obj, :container => false %>
 </div>

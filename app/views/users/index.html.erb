@@ -16,9 +16,11 @@
                           user_path(user),
                           data: { turbo_method: :get },
                           class: "btn btn-outline-success" %>
-              <%= link_to 'Edit profile',
-                          edit_user_path(user),
-                          class: "btn btn-outline-info" %>
+              <% if logged_in? && user == current_user %>
+                <%= link_to 'Edit profile',
+                            edit_user_path(user),
+                            class: "btn btn-outline-info" %>
+              <% end %>
             </div>
             <div class="card-footer text-muted">
               <small>
@@ -31,7 +33,4 @@
     </div>
   <% end %>
 </div>
-
-<div class="apple_pagination fixed-bottom mt-auto">
-  <%= will_paginate @users, :container => false %>
-</div>
+<%= render 'layouts/pagination', obj: @users %>

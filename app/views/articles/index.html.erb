@@ -1,6 +1,4 @@
 <h1 class="text-center mt-4">Listing all articles</h1>
 
 <%= render 'article', obj: @articles %>
-<div class="apple_pagination fixed-bottom mt-auto">
-  <%= will_paginate @articles, :container => false %>
-</div>
+<%= render 'layouts/pagination', obj: @user %>
