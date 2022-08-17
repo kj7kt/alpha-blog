@@ -8,6 +8,4 @@
   <% end %>
 </div>
 
-<%= render 'articles/article', obj: @user.articles %>
-<%= render 'layouts/pagination', obj:@user.articles.paginate(page: params[:page], per_page: 5) %>
-
+<%= render 'articles/article', obj: @articles %>

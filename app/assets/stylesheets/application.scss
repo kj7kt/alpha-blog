@@ -36,6 +36,9 @@
 }
 
 //pagination-style
+.pagination {
+  justify-content: center;
+}
 .apple_pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
@@ -46,7 +49,7 @@
   bottom: 3.5rem;
 }
 .apple_pagination a, .apple_pagination span {
-  padding: 0.2em 0.3em; }
+  padding: 0em 0.3em; }
 .apple_pagination .disabled {
   color: #aaaaaa; }
 .apple_pagination .current {
