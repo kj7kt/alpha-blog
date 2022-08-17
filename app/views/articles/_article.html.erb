@@ -18,7 +18,7 @@
                           article_path(article),
                           data: { turbo_method: :get },
                           class: "btn btn-outline-success" %>
-              <% if logged_in? && article.user == current_user %>
+              <% if logged_in? && (article.user == current_user || current_user.admin?) %>
                 <%= link_to 'Edit',
                             edit_article_path(article),
                             class: "btn btn-outline-info" %>

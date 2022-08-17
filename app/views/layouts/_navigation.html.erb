@@ -33,14 +33,19 @@
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile [<%= current_user.username %>]
+              Profile [<%= current_user.username %>]<%= '(Admin)' if current_user.admin? %>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'View your profile', user_path(current_user), class: 'dropdown-item' %>
-              <%= link_to 'Edit your profile', edit_user_path(current_user), class: 'dropdown-item' %>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+              <%= link_to 'View your profile',
+                          user_path(current_user),
+                          class: 'dropdown-item' %>
+              <%= link_to 'Edit your profile',
+                          edit_user_path(current_user),
+                          class: 'dropdown-item' %>
+              <%= link_to 'Delete your profile',
+                          user_path(current_user),
+                          date: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+                          class: 'dropdown-item text-danger' %>
             </ul>
           </li>
           <li class="nav-item">
