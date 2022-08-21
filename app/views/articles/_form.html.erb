@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center" id="form-container">
   <div class="col-10">
     <%= render "articles/shared/errors", obj: @article %>
     <%= form_with(model: @article, class: 'shadow bg-info rounded my-3 px-3 py-5', local: true) do |f| %>
@@ -8,14 +8,27 @@
           <div class="row mb-3">
             <%= f.label :title, class: 'col-2 col-form-label text-light' %>
             <div class="col-sm-10">
-              <%= f.text_field :title, class: 'form-control shadow-sm rounded', placeholder: 'Title of article' %>
+              <%= f.text_field :title,
+                               class: 'form-control shadow-sm rounded',
+                               placeholder: 'Title of article' %>
             </div>
           </div>
 
           <div class="row mb-3">
             <%= f.label :description, class: 'col-2 col-form-label text-light' %>
             <div class="col-sm-10">
-              <%= f.text_area :description, rows: 10, class: 'form-control shadow-sm rounded', placeholder: 'Description of article' %>
+              <%= f.text_area :description, rows: 10,
+                              class: 'form-control shadow-sm rounded',
+                              placeholder: 'Description of article' %>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <%= f.label :categories, class: 'col-2 col-form-label text-light' %>
+            <div class="col-sm-10">
+              <%= f.collection_select(:category_ids, Category.all, :id, :name,
+                                      { prompt: "Make your selection from the list below (can be empty)" },
+                                      { multiple: true, size: 3, class: "form-select shadow-sm rounded" }) %>
             </div>
           </div>
 

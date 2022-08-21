@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @articles = @category.articles.page(params[:id]).per(5)
   end
 
   def new
@@ -17,6 +18,14 @@ class CategoriesController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+
   end
 
   def index
